@@ -26,7 +26,7 @@ SECRET_KEY = os.environ.get('DJANGO_DEBUG', '12345')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
-DEBUG = os.environ.get(bool('True'))
+DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
 
 ALLOWED_HOSTS = []
 
@@ -128,6 +128,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # Heroku: Update database configuration from $DATABASE_URL.
 import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=500)
+
 DATABASES['default'].update(db_from_env)
 
 # Static files (CSS, JavaScript, Images)
